@@ -1,6 +1,6 @@
 {
   "name": "angular-graphql",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --open",
@@ -8,7 +8,13 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-  "private": true,
+  "author": {
+    "name": "Peter Kassenaar",
+    "email": "info@kassenaar.com",
+    "url": "https://www.kassenaar.com"
+  },
+  "license": "MIT",
+  "private": false,
   "dependencies": {
     "@angular/animations": "^14.2.0",
     "@angular/common": "^14.2.0",

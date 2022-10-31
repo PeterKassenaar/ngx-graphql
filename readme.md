@@ -26,16 +26,18 @@ The application won't run without the (GraphQL) Server so:
 ```
 cd server
 npm install
-node index.js
+npm start
 ````
+(or: `nodemon index.js` if you want to run it manually.)
 
 ## Installing & running the client
 
 ```
 cd client
 npm install
-npm start
+npm start 
 ```
+(or: `ng serve --open` if you want to run it manually)
 
 Updates or additions? Feel free to issue a pull request.
 
