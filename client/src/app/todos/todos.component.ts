@@ -9,8 +9,11 @@ import {ADD_TODO, GET_TODO, DELETE_TODO, GET_TODOS, UPDATE_TODO} from "../graphq
 })
 export class TodosComponent implements OnInit {
 
+  // TODO: (haha!) create a Todo-interface or class, or the like.
   todos: any[] = [];
   error: any;
+  result: any;
+  resultHeader: string = 'Result:';
   btnText: 'Submit' | 'Update' = 'Submit'
 
   constructor(private apollo: Apollo) {
@@ -20,7 +23,8 @@ export class TodosComponent implements OnInit {
 
     // Set up apollo watcher on todos
     this.apollo.watchQuery({
-      query: GET_TODOS
+      query: GET_TODOS,
+      pollInterval: 500 // look every 0.5s if there are new todos
     }).valueChanges.subscribe({
       next: (({data, error}: any) => {
         this.todos = data.todos
@@ -48,7 +52,10 @@ export class TodosComponent implements OnInit {
           query: GET_TODOS
         }]
       }).subscribe({
-        next: () => {
+        next: ({data}: any) => {
+          console.log('TODO added: ', data.data);
+          this.resultHeader = 'Result: added'
+          this.result = data;
           this.todoForm.reset()
         },
         error: (err) => this.error = err
@@ -70,6 +77,8 @@ export class TodosComponent implements OnInit {
       }]
     }).subscribe({
         next: ({data}: any) => {
+          this.resultHeader = 'Result: deleted'
+          this.result = data.deleteTodo
           console.log('TODO Deleted: ', data.deleteTodo);
         },
         error: (error) => this.error = error
@@ -87,7 +96,7 @@ export class TodosComponent implements OnInit {
       next: ({data}: any) => {
         console.log('Fetched single todo: ', data)
         this.todoForm.patchValue({
-          id:data.todo.id,
+          id: data.todo.id,
           name: data.todo.name,
           description: data.todo.description
         })
@@ -112,7 +121,9 @@ export class TodosComponent implements OnInit {
       }]
     }).subscribe({
       next: ({data}: any) => {
-        console.log('Todo updated')
+        console.log('Todo updated', data)
+        this.resultHeader = 'Result: updated'
+        this.result = data
         this.todoForm.reset()
         this.btnText = 'Submit'
       },

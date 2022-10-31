@@ -1,9 +1,10 @@
 // graphql.queries.ts -the file holding the queries for the TODO application
+// We use the gql tag to parse our query string into a query document.
 
 import {gql} from "apollo-angular";
 
 const GET_TODOS = gql`
-  query{
+  query getAllTodos{
     todos{
       id
       name
