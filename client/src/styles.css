@@ -1,0 +1,6 @@
+/* You can add global styles to this file, and also import other style files */
+/*
+  *I* like Bootstrap, https://getbootstrap.com/, so using that here. Saves me
+  writing a ton of custom CSS code
+ */
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";

@@ -1,0 +1,34 @@
+<div class="main">
+  <h3>Simple Todo List</h3>
+  <!--  If there is an error (most likely: server-sided) it is displayed here-->
+  <div *ngIf="error" class="alert alert-danger">
+    <p>Error: {{ error }}</p>
+  </div>
+
+  <!--  Our reactive form-->
+  <form [formGroup]="todoForm" (ngSubmit)="addTodo()" class="my-3">
+    <input class="form-control" type="text" name="name" placeholder="Enter todo" formControlName="name"/>
+    <br/>
+    <input class="form-control" type="text" name="description" placeholder="Enter Description"
+           formControlName="description"/>
+    <br/>
+    <div class="d-grid">
+      <button class="btn btn-primary" [disabled]="todoForm.invalid">{{ btnText}}</button>
+    </div>
+  </form>
+
+  <!--  The list of Todos-->
+  <div class="todo-container" *ngIf="todos">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let todo of todos">
+        <h2 class="">{{ todo.name }}</h2>
+        <p>
+          <em>{{ todo.description }}</em>.
+          <span class="small">(id: {{ todo.id }})</span>
+        </p>
+        <button class="btn btn-danger" (click)="deleteTodo(todo.id)">Delete</button>
+        <button class="btn btn-info" (click)="getTodo(todo.id)">Update</button>
+      </li>
+    </ul>
+  </div>
+</div>
