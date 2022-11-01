@@ -22,7 +22,7 @@
     <div class="todo-container" *ngIf="todos">
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let todo of todos">
-          <h2 class="">{{ todo.name }}</h2>
+          <h2>{{ todo.name }}</h2>
           <p>
             <em>{{ todo.description }}</em>.
             <span class="small">(id: {{ todo.id }})</span>

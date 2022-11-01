@@ -7,11 +7,13 @@ import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { TodosComponent } from './todos/todos.component';
+import { CountriesComponent } from './countries/countries.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodosComponent
+    TodosComponent,
+    CountriesComponent
   ],
   imports: [
     BrowserModule,

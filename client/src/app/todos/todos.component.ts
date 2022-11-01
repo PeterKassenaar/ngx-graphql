@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Apollo} from "apollo-angular";
-import {ADD_TODO, GET_TODO, DELETE_TODO, GET_TODOS, UPDATE_TODO} from "../graphql/graphql.queries";
+import {ADD_TODO, GET_TODO, DELETE_TODO, GET_TODOS, UPDATE_TODO} from "../graphql/graphql.todo.queries";
 
 @Component({
   selector: 'app-todos',
@@ -24,7 +24,6 @@ export class TodosComponent implements OnInit {
     // Set up apollo watcher on todos
     this.apollo.watchQuery({
       query: GET_TODOS,
-      pollInterval: 500 // look every 0.5s if there are new todos
     }).valueChanges.subscribe({
       next: (({data, error}: any) => {
         this.todos = data.todos
